@@ -5,7 +5,6 @@ This turntable dynamically tracks a drone's location by adjusting its orientatio
 
 
 ## Possible Challenges:
-- One potential challenge is ensuring accurate alignment of the turntable to true north. If users fail to orient the turntable correctly, the system may not track the drone accurately
 - Environmental factors, such as magnetic interference or poor GPS signal
 - Stepper motor malfunctions or microswitch failures could disrupt the smooth rotation of the turntable
 - Proper handling of MQTT operations
