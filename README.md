@@ -10,5 +10,5 @@ This turntable dynamically tracks a drone's location by adjusting its orientatio
 - Stepper motor malfunctions or microswitch failures could disrupt the smooth rotation of the turntable
 - Proper handling of MQTT operations
 
-##Project Organization: 
+## Project Organization: 
 - The src directory contains python. 
