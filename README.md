@@ -1,8 +1,11 @@
 # HexTech TurnTable
-###  Description: Drone Antenna Tracking System with MQTT Communication
+###  Description: Drone Tracking System with MQTT Communication
 
-The turntable features a modern aesthetic, utilizing a single stepper motor and a microswitch to smoothly rotate the table and provide drone antenna tracking. The turntable dynamically adjusts its orientation based on the drone's GPS coordinates to maintain optimal communication. A graphical user interface guides users to set a zero/north reference point by entering the turntable's coordinates. Users can then input the drone's GPS coordinates to enable automatic tracking. The system utilizes the paho.mqtt.client library to manage MQTT operations, including connecting to the broker, publishing messages, and handling incoming messages. This ensures efficient communication between the turntable and the control system.
+The turntable uses a stepper motor and a microswitch to rotate smoothly as it tracks a drone using an antenna mounted on the turntable. The turntable adjusts its orientation based on the drone's GPS coordinates to maintain optimal communication. To set the turntable to true north, users manually align it using a compass or GPS device. Once aligned, users enter the true north orientation into the graphical user interface. Users can then input the drone's GPS coordinates for automatic tracking. The system uses the paho.mqtt.client library to manage MQTT operations, including connecting to the broker, publishing messages, and handling incoming messages. This ensures efficient communication between the turntable and the control system.
+
 
 ### Possible Challenges:
-- GPS acuracy and delay: Minimizing the delay between receiving GPS coordinates and adjusting the turntable to ensure real-time tracking
-- Compatability with various antennas
+- One potential challenge is ensuring accurate alignment of the turntable to true north. If users fail to orient the turntable correctly, the system may not track the drone accurately
+- Environmental factors, such as magnetic interference or poor GPS signal
+- Stepper motor malfunctions or microswitch failures could disrupt the smooth rotation of the turntable
+- Proper handling of MQTT operations
