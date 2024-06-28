@@ -1,0 +1,15 @@
+Throughout the development of the turntable, I learned about MQTT communication,
+position tracking, GUI creation, CAD with Autodesk Fusion, and the functioning of motors and gears.
+
+I learned how to use the paho.mqtt.client library for managing MQTT operations,
+such as connecting to the broker and publishing messages. Additionally, I gained knowledge on
+bearing calculations, understanding their mechanics, and converting these calculations into
+stepper motor movements. In regard to position tracking, I learned to store and update the
+current position after each movement so that there would not be a need to reset to the home
+position after every use.
+
+The HexTech board was a key component of this project. Equipped with an ESP32 microcontroller,
+the HexTech board was subscribed to an MQTT server in the cloud. This configuration allowed the software
+to publish messages to the server, which the HexTech board received and executed.
+
+
