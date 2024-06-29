@@ -10,6 +10,5 @@ a need to reset to the home position after every use.
 
 The HexTech board and technology was a key component of this project. The HexTech board was subscribed to an
 MQTT server in the cloud. This configuration allowed the software to publish messages to the 
-server, which the HexTech board received and executed. Hextech was helpful because it provided us with
-simple commands we could use that would communicate with the board's firmware without having to write 
-the C code ourselves. 
+server, which the HexTech board received and executed. Hextech was helpful because it provides
+simple commands to communicate with the board's firmware without having to write the C code. 
