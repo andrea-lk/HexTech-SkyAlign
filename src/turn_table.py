@@ -3,7 +3,6 @@ import os
 import paho.mqtt.client as mqtt
 
 STEPS_PER_REVOLUTION = 2393
-
 USERNAME = "hextech-andrea"
 PASSWORD = "andrea"
 commands = "hextech/hextech-andrea/commands"
@@ -11,36 +10,49 @@ topic = "hextech/hextech-andrea/status"
 
 unacked_publish = set()
 POSITION_FILE = "position.txt"
+BACK_STEPS = 20
 
 
 def main():
     mqttc = setup_mqtt()
-    initialize_position()
-    steps = read_steps()
-    if steps is not None:
-        move_and_update_position(mqttc, steps)
+    reset_to_zero(mqttc)
+
+    while True:
+        steps = read_steps()
+        if steps is not None:
+            move_and_update_position(mqttc, steps)
+            os.remove("steps.txt")  # Clear the steps file after moving
+
+        time.sleep(1)  # Check for new steps every second
 
     # Stop the loop and disconnect
     mqttc.disconnect()
     mqttc.loop_stop()
 
 
-def initialize_position():
-    if not os.path.exists(POSITION_FILE):
-        # Zero the turntable and set the initial position to 0
+def reset_to_zero(mqttc):
+    current_position = read_current_position()
+    if current_position == 0:
+        print("Turntable is already at zero. Moving 20 steps back and resetting to zero...")
+        move_steps(mqttc, -BACK_STEPS)
+        time.sleep(2)  # Wait for the movement to complete
+    else:
         print("Zeroing the turntable...")
-        zero_turntable()
-        with open(POSITION_FILE, "w") as file:
-            file.write("0")
-        print("Turntable zeroed and initial position set to 0.")
+
+    zero_turntable(mqttc)
+    with open(POSITION_FILE, "w") as file:
+        file.write("0")
+    print("Turntable zeroed and initial position set to 0.")
 
 
-def zero_turntable():
-    mqttc = setup_mqtt()
+def zero_turntable(mqttc):
     home_payload = "zeroX"
     publish_and_wait(mqttc, home_payload)
-    mqttc.disconnect()
-    mqttc.loop_stop()
+
+
+def move_steps(mqttc, steps):
+    steps_payload = f"stepper.00_speed_400|stepper.00_move_{steps}_1"
+    publish_and_wait(mqttc, steps_payload)
 
 
 def read_steps():
@@ -50,7 +62,6 @@ def read_steps():
             print(f"Read steps: {steps}")
             return steps
     except FileNotFoundError:
-        print("Steps file not found.")
         return None
 
 
