@@ -47,8 +47,7 @@ def calculate_bearing(lat1, long1, lat2, long2):
 
     # change in longitude
     delta_long = long2 - long1
-  
-    # calculate the Forward Azimuth
+
     x = math.sin(delta_long) * math.cos(lat2)
     y = math.cos(lat1) * math.sin(lat2) - (math.sin(lat1) * math.cos(lat2) * math.cos(delta_long))
 
