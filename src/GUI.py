@@ -3,9 +3,14 @@ import subprocess
 
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 800
+turntable_process = None
 
 
 def main():
+    global turntable_process
+    # Start the turntable script in a separate process
+    turntable_process = subprocess.Popen(["python", "turn_table.py"])
+
     # create the window
     window = tk.Tk()
     geometry = f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}"
@@ -17,6 +22,9 @@ def main():
     make_buttons(window, entries)
 
     window.mainloop()
+
+    # Terminate the turntable process when the GUI window is closed
+    turntable_process.terminate()
 
 
 def create_input_boxes(window):
@@ -54,15 +62,14 @@ def submit(entries):
     with open("coordinates.txt", "w") as file:
         file.write(f"{turntable_lat},{turntable_long},{drone_lat},{drone_long}")
 
-    # Run calculations.py
+    # Run calculations.py to compute the steps
     subprocess.run(["python", "calculations.py"])
 
-    # Run turntable.py
-    subprocess.run(["python", "turn_table.py"])
 
 def clear(entries):
     for entry in entries:
         entry.delete(0, tk.END)
+
 
 if __name__ == "__main__":
     main()
