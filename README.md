@@ -9,6 +9,7 @@ The SkyAlign is a turntable that dynamically tracks a drone's location by adjust
 - [Usage](#usage)
 - [Code Overview](#code-overview)
 - [Possible Challenges](#possible-challenges)
+- [Project Organization](#project-organization)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -81,4 +82,13 @@ This file handles the turntable's movements based on the calculated steps and ma
 - Proper handling of MQTT operations
 
 ## Project Organization: 
-- The src directory contains python. 
+- The src directory contains python.
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and submit pull requests.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
