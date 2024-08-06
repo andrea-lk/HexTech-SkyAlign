@@ -31,8 +31,7 @@ To set up this project locally, follow these steps:
    git clone https://github.com/your-username/SkyAlign.git
    cd SkyAlign
 2. **Install dependencies**: Ensure you have `tkinter` and `paho-mqtt` installed. You can install them using pip:
-
-  ```sh
+   ```sh
   pip install paho-mqtt
 
 
